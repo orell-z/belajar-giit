@@ -21,8 +21,18 @@ const Beranda = () => {
             </p>
 
             <div className="flex flex-wrap gap-4 justify-start">
-              <HomeButton variant="primary">Belanja Sekarang</HomeButton>
-              <HomeButton variant="secondary">Lihat Semua Brand</HomeButton>
+              <HomeButton variant="primary" onClick={() => navigate("/Produk")}>Belanja Sekarang</HomeButton>
+              <HomeButton 
+                  variant="secondary" 
+                  onClick={() => {
+                    const element = document.getElementById("brand-section");
+                    if (element) {
+                      element.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                >
+                Lihat Semua Brand
+              </HomeButton>
             </div>
           </div>
 

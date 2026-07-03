@@ -6,7 +6,7 @@ const Cards = () => {
   return (
     <>
       {/* 2. BRAND PILIHAN */}
-      <section className="py-12 px-4 md:px-8 text-left w-full">
+      <section id="brand-section" className="py-12 px-4 md:px-8 text-left w-full">
         <h2 className="font-bold text-2xl text-amber-400 mb-6">
           Brand Parfum Pilihan
         </h2>
@@ -15,7 +15,7 @@ const Cards = () => {
             <Cardberanda 
               key={item.id} 
               nama={item.nama} 
-              type={item.type} 
+              type={item.type}  
             />
           ))}
         </div>
