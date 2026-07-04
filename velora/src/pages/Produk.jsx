@@ -55,7 +55,7 @@ const Produk = () => {
               <CardProduk
                 key={item.id}
                 produk={item} // Mengoper objek produk utuh ke CardProduk
-                addToCart={() => addToCart(item)} // Mengirim item spesifik saat tombol diklik
+                addToCart={addToCart} // Mengirim item spesifik saat tombol diklik
               />
             ))}
 
