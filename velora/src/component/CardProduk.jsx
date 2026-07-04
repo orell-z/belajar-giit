@@ -1,7 +1,21 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
-// CARA KERJA: Tetap membongkar semua properti dalam satu baris parameter (termasuk 'id')
-const CardProduk = ({ produk: { id, nama, deskripsi, harga, img }, addToCart }) => {
+
+const CardProduk = ({ produk: { id, nama, deskripsi, harga, img }, addToCart, buyNow }) => {
+  const navigate = useNavigate();
+
+  // Fungsi penangan ketika tombol "Beli" diklik
+  const handleInstantCheckout = () => {
+    if (buyNow) {
+      // 1. Masukkan produk langsung ke state checkout/keranjang tunggal
+      buyNow({ id, nama, deskripsi, harga, img });
+      // 2. Langsung arahkan ke halaman checkout
+      navigate('/checkout');
+    }
+  };
+
+
   return (
     <article className="bg-zinc-900 rounded-xl w-60 min-h-80 border border-zinc-800 shadow-md flex flex-col justify-between hover:border-zinc-700 transition overflow-hidden group">
       
@@ -28,7 +42,7 @@ const CardProduk = ({ produk: { id, nama, deskripsi, harga, img }, addToCart }) 
         {/* REVISI: Mengirim variabel yang sudah dibongkar sebagai objek utuh ke addToCart */}
         <div className="flex gap-2 mt-4">
           <button 
-            onClick={() => addToCart({ id, nama, deskripsi, harga, img })} 
+            onClick={handleInstantCheckout} 
             className="flex-1 bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold py-1.5 rounded-lg text-sm transition"
           >
             Beli

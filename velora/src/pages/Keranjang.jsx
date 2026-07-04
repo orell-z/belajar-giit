@@ -104,9 +104,13 @@ const Keranjang = () => {
               </h2>
             </div>
 
-            <button className="bg-amber-400 hover:bg-amber-300 text-black font-bold text-lg px-8 py-4 rounded-xl transition">
-              Checkout ({totalQty})
-            </button>
+{/* Ganti tombol Checkout kamu menjadi seperti ini: */}
+          <button 
+            onClick={() => navigate('/checkout')} 
+            className="bg-yellow-500 text-black px-6 py-3 rounded-xl font-bold hover:bg-yellow-400 transition cursor-pointer"
+          >
+            Checkout ({cartItems.length})
+          </button>
           </div>
         </div>
       </div>

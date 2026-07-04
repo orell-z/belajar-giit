@@ -5,7 +5,7 @@ import { productData } from "../data/Produk"; // Mengimpor data dari file JS di 
 
 const Produk = () => {
   // Ambil fungsi addToCart global dari MainLayout (App.jsx)
-  const { addToCart } = useOutletContext();
+  const { addToCart, buyNow } = useOutletContext();
 
   // State untuk fungsionalitas kolom pencarian
   const [searchQuery, setSearchQuery] = useState("");
@@ -56,6 +56,7 @@ const Produk = () => {
                 key={item.id}
                 produk={item} // Mengoper objek produk utuh ke CardProduk
                 addToCart={addToCart} // Mengirim item spesifik saat tombol diklik
+                buyNow={buyNow}
               />
             ))}
 

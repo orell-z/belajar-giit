@@ -6,20 +6,22 @@ import Produk from './pages/Produk';
 import Keranjang from './pages/Keranjang';
 import Header from './component/Header';
 import Footer from './component/footer';
+import Checkout from './pages/checkout';
 
 const ProtectedRoute = () => {
   const isAuthenticated = localStorage.getItem('velora_token') === 'true';
   return isAuthenticated ? <Outlet /> : <Navigate to="/" replace />;
 };
 
-// ✅ FIX 1: Tambahkan 'setCartItems' ke dalam parameter MainLayout agar bisa dioper ke Outlet
-const MainLayout = ({ cartItems, setCartItems, addToCart, showPopup, setShowPopup }) => {
+// ✅ FIX 1: Tambahkan buyNow ke dalam parameter MainLayout agar tidak hilang saat dioper ke bawah
+const MainLayout = ({ cartItems, setCartItems, addToCart, buyNow, showPopup, setShowPopup }) => {
   return (
     <div className="min-h-screen flex flex-col justify-between bg-black text-white">
       {/* Oper data keranjang dan state pop-up ke Header */}
       <Header cartItems={cartItems} showPopup={showPopup} setShowPopup={setShowPopup} />
       <main className="flex-grow">
-        <Outlet context={{ addToCart, cartItems, setCartItems }} />
+        {/* ✅ FIX 2: Di sini tempat Outlet context yang benar, buyNow dioper ke semua halaman anak */}
+        <Outlet context={{ addToCart, buyNow, cartItems, setCartItems }} />
       </main>
       <Footer/>
     </div>
@@ -27,7 +29,7 @@ const MainLayout = ({ cartItems, setCartItems, addToCart, showPopup, setShowPopu
 };
 
 function App() {
-  // ✅ FIX 2: State awal langsung mengambil data localStorage agar ketika di-refresh barang tidak hilang
+  // State awal langsung mengambil data localStorage agar ketika di-refresh barang tidak hilang
   const [cartItems, setCartItems] = useState(() => {
     return JSON.parse(localStorage.getItem('velora_cart')) || [];
   });
@@ -35,6 +37,7 @@ function App() {
   // State untuk mengontrol pop-up notifikasi di navbar
   const [showPopup, setShowPopup] = useState(false);
 
+  // Fungsi Tambah ke Keranjang Biasa (Tombol 🛒)
   const addToCart = (produk) => {
     setCartItems((prevItems) => {
       const isExist = prevItems.find((item) => item.id === produk.id);
@@ -48,26 +51,33 @@ function App() {
         updatedCart = [...prevItems, { ...produk, qty: 1 }];
       }
 
-      // Simpan cadangan data ke localStorage agar bisa dibaca halaman Keranjang
       localStorage.setItem('velora_cart', JSON.stringify(updatedCart));
       return updatedCart;
     });
 
-    // Pemicu pop-up muncul di navbar
     setShowPopup(true);
   };
 
+  // Fungsi Instant Checkout (Tombol Beli)
+  const buyNow = (produk) => {
+    const instantCart = [{ ...produk, qty: 1 }];
+    setCartItems(instantCart);
+    localStorage.setItem('velora_cart', JSON.stringify(instantCart));
+  };
+
+ 
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route element={<ProtectedRoute />}>
-          {/* ✅ FIX 3: Kirim juga setCartItems ke dalam MainLayout di bawah ini */}
+          
           <Route element={
             <MainLayout 
               cartItems={cartItems} 
               setCartItems={setCartItems}
-              addToCart={addToCart} 
+              addToCart={addToCart}
+              buyNow={buyNow}
               showPopup={showPopup} 
               setShowPopup={setShowPopup} 
             />
@@ -75,6 +85,7 @@ function App() {
             <Route path="/beranda" element={<Beranda />} />
             <Route path="/produk" element={<Produk />} />
             <Route path="/keranjang" element={<Keranjang />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Route>
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
