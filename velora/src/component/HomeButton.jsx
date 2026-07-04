@@ -1,6 +1,6 @@
 import React from 'react';
 
-function HomeButton({ children, variant = 'primary' }) {
+function HomeButton({ children, variant = 'primary', onClick }) {
   // Base style memastikan padding (px-6 py-3) dan ukuran font-nya sama persis
   const baseStyle = "px-6 py-3 rounded-md font-medium transition duration-200 inline-block text-center";
   
@@ -13,7 +13,7 @@ function HomeButton({ children, variant = 'primary' }) {
   };
 
   return (
-    <button className={`${baseStyle} ${variants[variant]}`}>
+    <button className={`${baseStyle} ${variants[variant]}`} onClick={onClick}>
       {children}
     </button>
   );
