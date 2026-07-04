@@ -1,47 +1,49 @@
 import React from "react";
 
-const CardProduk = ({ produk }) => {
-  // Destructuring object data produk agar ngetiknya tidak panjang
-  const { nama, deskripsi, harga, img } = produk;
-
+// CARA KERJA: Tetap membongkar semua properti dalam satu baris parameter (termasuk 'id')
+const CardProduk = ({ produk: { id, nama, deskripsi, harga, img }, addToCart }) => {
   return (
-    <div className="group bg-gray-900 border border-yellow-600 rounded-2xl overflow-hidden hover:-translate-y-2 hover:scale-105 hover:shadow-2xl hover:shadow-yellow-600/20 transition-all duration-300">
-      {/* Bagian Gambar Produk */}
-      <img
-        src={img}
-        alt={nama}
-        className="w-full h-72 object-cover group-hover:scale-110 transition duration-500"
-      />
+    <article className="bg-zinc-900 rounded-xl w-60 min-h-80 border border-zinc-800 shadow-md flex flex-col justify-between hover:border-zinc-700 transition overflow-hidden group">
+      
+      {/* Pembungkus Foto Produk dengan Efek Zoom Saat Hover */}
+      <div className="w-full h-40 bg-zinc-800 flex items-center justify-center overflow-hidden">
+        <img 
+          src={img} 
+          alt={nama} 
+          className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+        />
+      </div>
 
-      {/* Bagian Detail Konten */}
-      <div className="p-5">
-        <h3 className="text-xl font-bold text-white">
-          {nama}
-        </h3>
-
-        <p className="text-gray-400 text-sm mt-2">
-          {deskripsi}
-        </p>
-
-        <div className="mt-4">
-          <span className="text-yellow-600 font-bold text-lg">
-            {harga}
-          </span>
+      {/* Detail Konten & Tombol Aksi */}
+      <div className="p-5 flex-1 flex flex-col justify-between">
+        <div>
+          <h4 className="font-bold text-amber-400 text-lg">{nama}</h4>
+          <p className="text-gray-300 mt-2 text-sm leading-relaxed">{deskripsi}</p>
+          
+          <div className="mt-3">
+            <span className="text-yellow-600 font-bold text-base">{harga}</span>
+          </div>
         </div>
 
-        {/* Tombol Beli & Keranjang */}
-        <div className="flex gap-2 mt-5">
-          <button className="flex-1 bg-yellow-600 text-black font-semibold py-2 rounded-lg hover:bg-yellow-700 hover:text-white transition flex items-center justify-center">
-            <i className="fa-solid fa-bag-shopping mr-2"></i>
+        {/* REVISI: Mengirim variabel yang sudah dibongkar sebagai objek utuh ke addToCart */}
+        <div className="flex gap-2 mt-4">
+          <button 
+            onClick={() => addToCart({ id, nama, deskripsi, harga, img })} 
+            className="flex-1 bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold py-1.5 rounded-lg text-sm transition"
+          >
             Beli
           </button>
-
-          <button className="w-12 border border-yellow-600 text-yellow-600 rounded-lg hover:bg-yellow-600 hover:text-black transition flex items-center justify-center">
-            <i className="fa-solid fa-cart-shopping">🛒</i>
+          <button 
+            onClick={() => addToCart({ id, nama, deskripsi, harga, img })} 
+            type="button"
+            className="px-2.5 border border-amber-400 text-amber-400 rounded-lg hover:bg-amber-400 hover:text-stone-950 text-sm transition flex items-center justify-center"
+          >
+            🛒
           </button>
         </div>
       </div>
-    </div>
+
+    </article>
   );
 };
 

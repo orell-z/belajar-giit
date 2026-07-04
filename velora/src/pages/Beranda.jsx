@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import Cards from "../component/cards";
 import HomeButton from "../component/HomeButton";
 
+// 1. TAMBAHKAN IMPORT INI (Ini yang bikin halamannya putih polos tadi)
+import bgBanner from "../assets/background.png"; 
+
 const Beranda = () => {
   const navigate = useNavigate();
   return (
@@ -38,7 +41,12 @@ const Beranda = () => {
 
           <div className="flex justify-center md:justify-end w-full">
             <div className="w-full max-w-md h-80 md:h-[400px] bg-zinc-900 rounded-2xl border border-zinc-800 overflow-hidden flex items-center justify-center relative shadow-xl">
-              <span className="text-zinc-500 text-sm font-medium">Tempat Foto Parfum (Banner)</span>
+              {/* 2. Di sini variabel bgBanner sekarang sudah aman digunakan */}
+              <img 
+                src={bgBanner} 
+                alt="Velora Banner" 
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
