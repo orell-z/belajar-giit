@@ -5,6 +5,7 @@ import Beranda from './pages/Beranda';
 import Produk from './pages/Produk';
 import Keranjang from './pages/Keranjang';
 import Header from './component/Header';
+import Footer from './component/footer';
 
 // 1. Pelindung halaman internal (Hanya bisa diakses jika sudah login)
 const ProtectedRoute = () => {
@@ -20,6 +21,7 @@ const MainLayout = () => {
       <main className="flex-grow">
         <Outlet />
       </main>
+      <Footer/>
     </div>
   );
 };
