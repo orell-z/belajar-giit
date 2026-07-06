@@ -4,10 +4,14 @@ import produkNoir from "../assets/d7ab277ac663d3ab976b32ec316f0093.jpg";
 import produkBloom from "../assets/a0b5ae4672b56358e1696c223acafd42.jpg";
 import produkOcean from "../assets/53fb0d4d4bd34f31c37cf4c827158eb9.jpg"; 
 // Kamu bisa pakai gambar yang ada atau arahkan ke asset foto parfum lainnya:
-import produkGold from "../assets/b9e4abc66f614ef86529c48afc13a4f4.jpg"; 
-import produkMystic from "../assets/41b42b1597ce43684b66fab1781417ac.jpg";
-import produkRouge from "../assets/c53ca6ea676512dc1ac8fcc3eadf4bfe.jpg";
-import produkBreeze from "../assets/054ea8e274c5206578d5088f31c6e444.jpg";
+import produkGold from "../assets/5c2312f5d0719dede89184ba807398f0.jpg"; 
+import produkMystic from "../assets/7a0743db1d289f7f52dbbc47414c8df3.jpg";
+import produkRouge from "../assets/15d40afc2593733f6c5acc1be13dd745.jpg";
+import produkBreeze from "../assets/dde3bca8dc81117742725d475ebb581b.jpg";
+import produkZenith from "../assets/073911fbcbf71e6bbeb80dfa44fe1ec8.jpg";
+import produkTwilight from "../assets/be0fd3e22223ca26284058922dfcf750.jpg";
+import produkEssence from "../assets/887a308efc0e0bc808c7fee2e44f7ee1.jpg"
+
 
 export const productData = [
   { 
@@ -71,7 +75,7 @@ export const productData = [
     nama: "Velora Zenith", 
     deskripsi: "Kombinasi maskulin mint dingin dan cedarwood untuk pria petualang.", 
     harga: "Rp 195.000",
-    img: produkOcean, // Sementara memakai asset yang ada
+    img: produkZenith, // Sementara memakai asset yang ada
     type: "product"
   },
   { 
@@ -79,7 +83,7 @@ export const productData = [
     nama: "Velora Twilight", 
     deskripsi: "Kehangatan lavender sore hari bercampur dengan manisnya madu alami.", 
     harga: "Rp 185.000",
-    img: produkNoir, // Sementara memakai asset yang ada
+    img: produkTwilight, // Sementara memakai asset yang ada
     type: "product"
   },
   { 
@@ -87,7 +91,7 @@ export const productData = [
     nama: "Velora Essence", 
     deskripsi: "Ekstrak teh hijau murni dan white musk yang menenangkan jiwa.", 
     harga: "Rp 159.000",
-    img: produkBloom, // Sementara memakai asset yang ada
+    img: produkEssence, // Sementara memakai asset yang ada
     type: "product"
   }
 ];
